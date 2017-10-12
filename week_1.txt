@@ -1,0 +1,26 @@
+Vector Addition
+
+    Is commutative. That is, for all vectors x + y = y + x
+
+    Is associative. That is, for all vectors (x + y) + z = x + (y + z)
+    
+    Has the zero vector as an identity. For all vectors x + 0 = 0 + x,
+    where 0 is the vector of size n with 0 for each component.
+    
+    Has an inverse, -x. That is x + (-x) = 0
+
+
+The dot product of vectors
+
+    Is commutative. That is, for all vectors DOT(x, y) = DOT(y, x).
+    
+    Distributes over vector addition. That is, for all vectors:
+    x*DOT(y, z) = DOT(x, y) + DOT(x, z)
+    DOT((x + y), z) = DOT(x, z) + DOT(y, z)
+
+Other Properties
+
+    DOT((x + y), (x + y)) = DOT(x, x) + 2*DOT(x, y) + DOT(y, y)
+    
+    DOT(x, y) = 0 if and only if x and y are orthogonal.
+    
