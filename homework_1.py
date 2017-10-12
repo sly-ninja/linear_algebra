@@ -23,12 +23,29 @@ displacement_vectors = [
     ]
 
 destinations = cities.keys()
+itinerary = []
 
-for city in cities:
+
+def find_itinerary(cities, displacement_vectors, city):
+#    for index, city in enumerate(cities):
+#        print(index)
+##    for city in cities:
+#        for place in destinations:
+    i = 0
+    total_cities = len(destinations)
+    while i <= total_cities:
+        for place in destinations:
+            if list(np.subtract(cities[place], cities[city])) in displacement_vectors:
+                itinerary.append(place)
+                city = place
+                i += 1
+            else:
+                print('no match')
     
-    for place in destinations:
-        if np.subtract(cities[place], cities[city]) in any(displacement_vectors):
-            print(place)
+    return itinerary
+        
     
 #    print(city)
 #    print([np.subtract(cities[place], cities[city]) for place in destinations])
+
+print(find_itinerary(cities, displacement_vectors, 'Austin'))
