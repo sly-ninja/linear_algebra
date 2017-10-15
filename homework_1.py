@@ -1,6 +1,8 @@
 import numpy as np
 #np.set_printoptions(precision=4)
 import re 
+from decimal import *
+getcontext().prec = 12
 
 def convert_to_decimal(dms):
     """
@@ -8,8 +10,8 @@ def convert_to_decimal(dms):
     returns array pf coordinates as decimals
     """
     coordinates = re.split('[°\'"]+', dms)
-    WE = abs(float(coordinates[0])) + abs(float(coordinates[1])/60)
-    NS = abs(float(coordinates[2])) + abs(float(coordinates[3])/60)
+    WE = abs(Decimal(coordinates[0])) + abs(Decimal(coordinates[1])/60)
+    NS = abs(Decimal(coordinates[2])) + abs(Decimal(coordinates[3])/60)
 
     if '-' in (coordinates[0] or coordinates[1]):
         WE *= -1
@@ -40,7 +42,7 @@ def update_list(displacement_vectors):
     return np.array(vector_list)
 
 
-def find_itinerary(city_list, vector_array, city):
+def find_itinerary(city_list, vector_list, city):
     """
     function to determine itinerary based on a list of displacement vectors
     takes in a list of cities and list of displacement vectors and starting city
@@ -50,11 +52,10 @@ def find_itinerary(city_list, vector_array, city):
     itinerary = []
     
     for place in destinations:
-        print('CITY', city)
-        if np.subtract(city_list[place], city_list[city]).tolist() in vector_array:
+        if np.subtract(city_list[place], city_list[city]) in vector_list:
             itinerary.append(place)
             city = place
-    
+            
     return itinerary
 
 
